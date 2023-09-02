@@ -1,5 +1,6 @@
 package org.example;
 import static org.example.PriceApp.scanner;
+import static org.example.UserInput.readInput;
 
 public class Menu {
     public static void staticMenu() {
@@ -21,6 +22,8 @@ public class Menu {
             switch (input.toLowerCase()){
                 case "1" -> {
                     System.out.println("Du har valt 1: Imatning");
+                    readInput();
+
 
                 }
                 case "2" -> {
