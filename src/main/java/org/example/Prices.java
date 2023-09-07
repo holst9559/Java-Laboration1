@@ -10,10 +10,7 @@ public class Prices {
     public static ArrayList<Integer> prices = new ArrayList<>();
 
     public static void minMaxAverage() {
-        if (prices.size() < 24) {
-            System.out.println("Det finns inte tillräckligt med information, mata in elpriser först.");
-            staticMenu();
-        }
+        checkList();
 
 
         Integer min = Collections.min(prices);
@@ -32,11 +29,76 @@ public class Prices {
 
     }
 
+    public static void sortPrices() {
+        checkList();
+
+        ArrayList<PriceObj> sortedList = new ArrayList<>();
+
+        for (var i = 0; i < prices.size(); i++) {
+            sortedList.add(new PriceObj(prices.get(i), i));
+        }
+
+        Collections.sort(sortedList);
+
+        System.out.println("Priser i fallande ordning");
+        System.out.println('\n');
+
+        for (PriceObj priceObj : sortedList) {
+            System.out.printf("Kl: %02d-%02d %d öre", priceObj.timeIndex, priceObj.timeIndex + 1, priceObj.price);
+            System.out.println('\n');
+        }
+
+        staticMenu();
+    }
+
 
     private static int averageSum() {
         return prices.stream()
                 .mapToInt(a -> a)
                 .sum();
 
+    }
+
+    private static void checkList() {
+        if (prices.size() < 24) {
+            System.out.println("Det finns inte tillräckligt med information, mata in elpriser först.");
+            staticMenu();
+        }
+    }
+
+    private static class PriceObj implements Comparable<PriceObj> {
+        private Integer price;
+        private Integer timeIndex;
+
+        private PriceObj() {
+            price = 0;
+            timeIndex = 0;
+        }
+
+        private PriceObj(Integer price, Integer timeIndex) {
+            this.price = price;
+            this.timeIndex = timeIndex;
+        }
+
+        public Integer getPrice() {
+            return price;
+        }
+
+        public void setPrice(Integer price) {
+            this.price = price;
+        }
+
+        public Integer getTimeIndex() {
+            return timeIndex;
+        }
+
+        public void setTime(Integer timeIndex) {
+            this.timeIndex = timeIndex;
+        }
+
+        @Override
+        public int compareTo(PriceObj e) {
+            return this.getPrice().compareTo(e.getPrice());
+        }
     }
 }

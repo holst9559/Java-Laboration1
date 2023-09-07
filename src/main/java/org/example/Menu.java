@@ -2,6 +2,7 @@ package org.example;
 
 import static org.example.PriceApp.scanner;
 import static org.example.Prices.minMaxAverage;
+import static org.example.Prices.sortPrices;
 import static org.example.UserInput.readInput;
 
 public class Menu {
@@ -29,11 +30,10 @@ public class Menu {
             case "2" -> {
                 System.out.println("Du har valt 2: Min, Max, och Medel");
                 minMaxAverage();
-
             }
             case "3" -> {
                 System.out.println("Du har valt 3: Sortera");
-
+                sortPrices();
             }
             case "4" -> {
                 System.out.println("Du har valt 4: Bästa laddningstid (4h)");
