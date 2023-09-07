@@ -51,6 +51,25 @@ public class Prices {
         staticMenu();
     }
 
+    public static void optimalChargingTime() {
+        checkList();
+
+        int sum = Integer.MAX_VALUE;
+        int index = 0;
+
+        for (int i = 0; i < 21; i++) {
+            int tempPrice = prices.get(i) + prices.get(i + 1) + prices.get(i + 2) + prices.get(i + 3);
+            if (tempPrice < sum) {
+                sum = tempPrice;
+                index = i;
+            }
+        }
+
+        System.out.printf("Börja ladda mellan %02d-%02d för att få billigast pris, priset är då: %d öre/kWh", index, index + 1, sum);
+        System.out.println('\n');
+        staticMenu();
+    }
+
 
     private static int averageSum() {
         return prices.stream()
@@ -101,4 +120,5 @@ public class Prices {
             return this.getPrice().compareTo(e.getPrice());
         }
     }
+
 }

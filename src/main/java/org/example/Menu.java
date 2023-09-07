@@ -1,8 +1,7 @@
 package org.example;
 
 import static org.example.PriceApp.scanner;
-import static org.example.Prices.minMaxAverage;
-import static org.example.Prices.sortPrices;
+import static org.example.Prices.*;
 import static org.example.UserInput.readInput;
 
 public class Menu {
@@ -37,7 +36,7 @@ public class Menu {
             }
             case "4" -> {
                 System.out.println("Du har valt 4: Bästa laddningstid (4h)");
-
+                optimalChargingTime();
             }
             case "e" -> {
                 System.out.println("Du har valt att avsluta programmet");
