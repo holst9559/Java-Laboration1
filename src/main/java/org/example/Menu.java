@@ -6,7 +6,6 @@ import static org.example.UserInput.readInput;
 
 public class Menu {
     public static void staticMenu() {
-
         System.out.println("Elpriser");
         System.out.println("-----------");
         System.out.println("1. Inmatning");
@@ -48,8 +47,5 @@ public class Menu {
                 staticMenu();
             }
         }
-
-
     }
-
 }
