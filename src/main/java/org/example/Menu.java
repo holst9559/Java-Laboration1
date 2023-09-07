@@ -1,5 +1,7 @@
 package org.example;
+
 import static org.example.PriceApp.scanner;
+import static org.example.Prices.minMaxAverage;
 import static org.example.UserInput.readInput;
 
 public class Menu {
@@ -19,36 +21,34 @@ public class Menu {
     public static void menuChoice() {
         System.out.println("Völj ett alternativ: ");
         var input = scanner.nextLine();
-            switch (input.toLowerCase()){
-                case "1" -> {
-                    System.out.println("Du har valt 1: Imatning");
-                    readInput();
-
-
-                }
-                case "2" -> {
-                    System.out.println("Du har valt 2: Min, Max, och Medel");
-
-                }
-                case "3" -> {
-                    System.out.println("Du har valt 3: Sortera");
-
-                }
-                case "4" -> {
-                    System.out.println("Du har valt 4: Bästa laddningstid (4h)");
-
-                }
-                case "e" -> {
-                    System.out.println("Du har valt att avsluta programmet");
-                    System.exit(0);
-
-                }
-                default -> {
-                    System.out.println("Ogiltigt menyval, försök igen med ett menyval från listan");
-                    staticMenu();
-                }
+        switch (input.toLowerCase()) {
+            case "1" -> {
+                System.out.println("Du har valt 1: Imatning");
+                readInput();
             }
+            case "2" -> {
+                System.out.println("Du har valt 2: Min, Max, och Medel");
+                minMaxAverage();
 
+            }
+            case "3" -> {
+                System.out.println("Du har valt 3: Sortera");
+
+            }
+            case "4" -> {
+                System.out.println("Du har valt 4: Bästa laddningstid (4h)");
+
+            }
+            case "e" -> {
+                System.out.println("Du har valt att avsluta programmet");
+                System.exit(0);
+
+            }
+            default -> {
+                System.out.println("Ogiltigt menyval, försök igen med ett menyval från listan");
+                staticMenu();
+            }
+        }
 
 
     }
