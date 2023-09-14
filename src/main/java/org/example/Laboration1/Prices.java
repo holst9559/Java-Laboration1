@@ -1,9 +1,9 @@
-package org.example;
+package org.example.Laboration1;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static org.example.Menu.staticMenu;
+import static org.example.Laboration1.Menu.staticMenu;
 
 public class Prices {
 

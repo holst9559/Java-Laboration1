@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Laboration1;
 
 // Metod för en meny - Done
 // Metod för inmatining av elpriser baserat på klockslag. 00-01, 02-03, 04-05 etc - Done
@@ -8,7 +8,7 @@ package org.example;
 
 import java.util.Scanner;
 
-import static org.example.Menu.staticMenu;
+import static org.example.Laboration1.Menu.staticMenu;
 
 public class PriceApp {
     public static Scanner scanner = new Scanner(System.in);

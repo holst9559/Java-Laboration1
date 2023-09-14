@@ -1,10 +1,8 @@
-package org.example;
+package org.example.Laboration1;
 
-import java.util.Scanner;
-
-import static org.example.Menu.staticMenu;
-import static org.example.PriceApp.scanner;
-import static org.example.Prices.prices;
+import static org.example.Laboration1.Menu.staticMenu;
+import static org.example.Laboration1.PriceApp.scanner;
+import static org.example.Laboration1.Prices.prices;
 
 public class UserInput {
 

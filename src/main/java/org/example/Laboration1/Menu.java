@@ -1,8 +1,8 @@
-package org.example;
+package org.example.Laboration1;
 
-import static org.example.PriceApp.scanner;
-import static org.example.Prices.*;
-import static org.example.UserInput.readInput;
+import static org.example.Laboration1.PriceApp.scanner;
+import static org.example.Laboration1.Prices.*;
+import static org.example.Laboration1.UserInput.readInput;
 
 public class Menu {
     public static void staticMenu() {
