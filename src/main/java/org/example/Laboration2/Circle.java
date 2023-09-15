@@ -1,5 +1,7 @@
 package org.example.Laboration2;
 
+import java.util.Objects;
+
 public class Circle extends Shape {
 
     private float radius;
@@ -24,5 +26,18 @@ public class Circle extends Shape {
     @Override
     double getPerimeter() {
         return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        return Float.compare(radius, circle.radius) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(radius);
     }
 }
