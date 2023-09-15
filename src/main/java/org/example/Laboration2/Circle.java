@@ -20,12 +20,12 @@ public class Circle extends Shape {
 
     @Override
     double getArea() {
-        return 0;
+        return Math.PI * radius * radius;
     }
 
     @Override
     double getPerimeter() {
-        return 0;
+        return Math.PI * radius * 2;
     }
 
     @Override
