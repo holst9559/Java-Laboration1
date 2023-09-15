@@ -16,9 +16,20 @@ public class App {
         shapeList.add(Shape.newCircle(7.5f));
         shapeList.add(Shape.newCircle(10));
 
-        System.out.println("Unsorted: " + shapeList);
+        System.out.println("Unsorted: ");
+        for (Shape shape: shapeList){
+            System.out.println("\t" + shape.getClass().getSimpleName() + " " + shape.getArea());
+        }
         shapeList.sort(null);
-        System.out.println("Sorted: " + shapeList);
+        System.out.println("Sorted: ");
+        for (Shape shape: shapeList){
+            System.out.println("\t" + shape.getClass().getSimpleName() + " " + shape.getArea());
+        }
+
+
+        //Part 2
+
+
 
 
 
