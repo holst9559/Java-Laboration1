@@ -17,4 +17,8 @@ public abstract class Shape implements Comparable<Shape>{
     public static Rectangle newRectangle(float width, float height){
         return new Rectangle(width, height);
     }
+
+
 }
+
+

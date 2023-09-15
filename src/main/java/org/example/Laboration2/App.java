@@ -28,6 +28,21 @@ public class App {
 
 
         //Part 2
+        Set<Shape> shapeSet = new HashSet<>();
+        shapeSet.add(Shape.newRectangle(2, 4));
+        shapeSet.add(Shape.newRectangle(2, 4));
+        shapeSet.add(Shape.newRectangle(8, 12));
+
+        shapeSet.add(Shape.newCircle(2));
+        shapeSet.add(Shape.newCircle(2));
+        shapeSet.add(Shape.newCircle(7.5f));
+
+        System.out.println("HashSet: ");
+        for (Shape shape: shapeSet){
+            System.out.println("\t" + shape.getClass().getSimpleName() + " " + shape.getArea() + " " + shape.hashCode());
+        }
+
+
 
 
 
