@@ -2,6 +2,8 @@ package org.example.Laboration3.entities;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
+
 
 public class Product {
     private final String id;
@@ -18,6 +20,24 @@ public class Product {
         this.rating = rating;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Product(String name, Category category, int rating, LocalDate createdAt, LocalDate updatedAt) {
+        this.id = String.valueOf(UUID.randomUUID());
+        this.name = name;
+        this.category = category;
+        this.rating = rating;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Product(String name, Category category, int rating) {
+        this.id = String.valueOf(UUID.randomUUID());
+        this.name = name;
+        this.category = category;
+        this.rating = rating;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
     }
 
     public String getId() {
