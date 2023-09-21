@@ -39,16 +39,30 @@ public class WarehouseTest {
     }
 
     @Test
-    void updateProduct() {
+    void shouldThrowAddNewProductException() {
+        Product product1 = new Product("", MALT, 4);
+        Product product2 = new Product("Pilsnermalt", MALT, 6);
+
+        assertThrows(IllegalArgumentException.class, () -> warehouse.addNewProduct(product1.toRecord()));
+        assertThrows(IllegalArgumentException.class, () -> warehouse.addNewProduct(product2.toRecord()));
+    }
+
+
+    @Test
+    void shouldUpdateProduct() {
         Product mockProduct = new Product("Pilsnermalt", MALT, 4, LocalDate.now().minusDays(1), LocalDate.now());
         warehouse.addNewProduct(mockProduct.toRecord());
 
-        ProductRecord update = new ProductRecord(mockProduct.getId(), "Pilsnermalt", MALT, 1, LocalDate.now(), LocalDate.now());
+        ProductRecord update = new ProductRecord(mockProduct.getId(), "Simcoe", HOPS, 1, LocalDate.now(), LocalDate.now());
         ProductRecord updatedProduct = warehouse.updateProduct(update);
 
         assertEquals(1, updatedProduct.rating());
+        assertEquals("Simcoe", updatedProduct.name());
+        assertEquals(HOPS, updatedProduct.category());
         assertEquals(LocalDate.now(), updatedProduct.updatedAt());
         assertEquals(LocalDate.now().minusDays(1), updatedProduct.createdAt());
     }
+
+
 
 }
