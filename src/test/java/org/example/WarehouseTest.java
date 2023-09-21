@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -198,7 +199,21 @@ public class WarehouseTest {
 
 
         assertEquals(2, size);
+    }
 
+    @Test
+    void shouldReturnMappedProducts() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product2 = new Product("Pale Ale Malt", MALT, 2);
+        Product product3 = new Product("Simcoe", HOPS, 5);
 
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+        warehouse.addNewProduct(product3.toRecord());
+
+        Map<Character, Long> productMap = warehouse.getProductMap();
+
+        assertEquals(2, productMap.get('P'));
+        assertEquals(1, productMap.get('S'));
     }
 }

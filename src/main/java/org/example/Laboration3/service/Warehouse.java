@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 
 /*Utöka Warehouse med ytterligare funktioner för:
-•Hämta hur många produkter det finns i en given kategori.
 •Hämta en Map som innehåller alla bokstäver som produktnamn börjar på
 som nyckel och antalet produkter som börjar på den bokstaven som value.
 
@@ -95,4 +94,8 @@ public class Warehouse {
                 .size();
     }
 
+    public Map<Character, Long> getProductMap() {
+        return products.stream().collect(Collectors.groupingBy(product -> product.getName().charAt(0),
+                Collectors.counting()));
+    }
 }
