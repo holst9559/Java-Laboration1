@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 
 
 /*Utöka Warehouse med ytterligare funktioner för:
-•Hämta en Map som innehåller alla bokstäver som produktnamn börjar på
-som nyckel och antalet produkter som börjar på den bokstaven som value.
 
 •Hämta alla produkter med max rating, skapade denna månad och sorterat på datum med nyast först.
 */
@@ -97,5 +95,13 @@ public class Warehouse {
     public Map<Character, Long> getProductMap() {
         return products.stream().collect(Collectors.groupingBy(product -> product.getName().charAt(0),
                 Collectors.counting()));
+    }
+
+    public List<ProductRecord> getMaxRatingLastMonth() {
+        return products.stream().filter(product -> product.getCreatedAt()
+                        .isAfter(LocalDate.now().minusMonths(1)))
+                .filter(product -> product.getRating() == maxRating)
+                .map(Product::toRecord)
+                .toList();
     }
 }

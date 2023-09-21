@@ -216,4 +216,19 @@ public class WarehouseTest {
         assertEquals(2, productMap.get('P'));
         assertEquals(1, productMap.get('S'));
     }
+
+    @Test
+    void shouldReturnMaxRatingLastMonth() {
+        Product product1 = new Product("Pilsnermalt", MALT, 5, LocalDate.now().minusMonths(2), LocalDate.now().minusMonths(2));
+        Product product2 = new Product("Pale Ale Malt", MALT, 2);
+        Product product3 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+        warehouse.addNewProduct(product3.toRecord());
+
+        List<ProductRecord> maxRatings = warehouse.getMaxRatingLastMonth();
+
+        assertEquals("Simcoe", maxRatings.get(0).name());
+    }
 }
