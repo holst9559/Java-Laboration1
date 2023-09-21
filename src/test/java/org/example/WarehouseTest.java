@@ -95,14 +95,24 @@ public class WarehouseTest {
 
     @Test
     void shouldReturnMatchingId() {
-        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product = new Product("Pilsnermalt", MALT, 4);
 
-        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product.toRecord());
 
-        ProductRecord getProduct = warehouse.getProductById(product1.getId());
+        ProductRecord getProduct = warehouse.getProductById(product.getId());
 
         assertEquals("Pilsnermalt", getProduct.name());
-        assertEquals(product1.getId(), getProduct.id());
+        assertEquals(product.getId(), getProduct.id());
         assertNotEquals("Simcoe", getProduct.name());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenIdIsNotPresent() {
+        Product product = new Product("Pilsnermalt", MALT, 4);
+
+        warehouse.addNewProduct(product.toRecord());
+
+        assertThrows(IllegalArgumentException.class, () -> warehouse.getProductById("123"));
+        assertThrows(IllegalArgumentException.class, () -> warehouse.getProductById(""));
     }
 }
