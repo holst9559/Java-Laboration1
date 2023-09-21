@@ -101,6 +101,7 @@ public class Warehouse {
         return products.stream().filter(product -> product.getCreatedAt()
                         .isAfter(LocalDate.now().minusMonths(1)))
                 .filter(product -> product.getRating() == maxRating)
+                .sorted(Comparator.comparing(Product::getCreatedAt).reversed())
                 .map(Product::toRecord)
                 .toList();
     }
