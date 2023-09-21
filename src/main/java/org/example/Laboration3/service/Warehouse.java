@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 /*
-•Hämta alla produkter.
 •Hämta en produkt genom produktens id.
 •Hämta alla produkter som hör till en kategori sorterat efter produktnamn a-z.
 •Hämta alla produkter skapade efter ett angivet datum. (Nya produkter sen sist)
@@ -51,6 +50,13 @@ public class Warehouse {
         return products.stream()
                 .map(Product::toRecord)
                 .toList();
+    }
+
+    public ProductRecord getProductById(String productId) {
+        return products.stream().filter(product -> product.getId().equals(productId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Product ID does not exist"))
+                .toRecord();
     }
 
 }

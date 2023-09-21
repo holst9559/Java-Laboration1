@@ -93,4 +93,16 @@ public class WarehouseTest {
         assertEquals("Simcoe", allProducts.get(1).name());
     }
 
+    @Test
+    void shouldReturnMatchingId() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+
+        warehouse.addNewProduct(product1.toRecord());
+
+        ProductRecord getProduct = warehouse.getProductById(product1.getId());
+
+        assertEquals("Pilsnermalt", getProduct.name());
+        assertEquals(product1.getId(), getProduct.id());
+        assertNotEquals("Simcoe", getProduct.name());
+    }
 }
