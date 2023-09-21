@@ -13,13 +13,13 @@ public class Product {
     private final LocalDate createdAt;
     private LocalDate updatedAt;
 
-    public Product(String id, String name, Category category, int rating, LocalDate createdAt, LocalDate updatedAt) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.rating = rating;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Product(ProductRecord product) {
+        this.id = product.id();
+        this.name = product.name();
+        this.rating = product.rating();
+        this.createdAt = product.createdAt();
+        this.updatedAt = product.updatedAt();
+        this.category = product.category();
     }
 
     public Product(String name, Category category, int rating, LocalDate createdAt, LocalDate updatedAt) {
@@ -81,16 +81,21 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id);
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return super.hashCode();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        final Product other = (Product) obj;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
@@ -108,5 +113,4 @@ public class Product {
     public ProductRecord toRecord() {
         return new ProductRecord(id, name, category, rating, createdAt, updatedAt);
     }
-
 }
