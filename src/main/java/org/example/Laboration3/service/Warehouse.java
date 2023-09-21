@@ -6,12 +6,17 @@ import org.example.Laboration3.entities.ProductRecord;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
-/*
-•Hämta alla produkter som modifierats sen de skapades. (Datum ej samma)
 
+/*Utöka Warehouse med ytterligare funktioner för:
+•Hämta alla kategorier som har minst 1 produkt kopplad.
+•Hämta hur många produkter det finns i en given kategori.
+•Hämta en Map som innehåller alla bokstäver som produktnamn börjar på
+som nyckel och antalet produkter som börjar på den bokstaven som value.
+
+•Hämta alla produkter med max rating, skapade denna månad och sorterat på datum med nyast först.
 */
-
 
 public class Warehouse {
 
@@ -74,5 +79,13 @@ public class Warehouse {
         return products.stream().filter(product -> !product.getUpdatedAt().equals(product.getCreatedAt()))
                 .map(Product::toRecord)
                 .toList();
+    }
+
+    public List<Category> getPopulatedCategories() {
+        return products.stream().collect(Collectors.groupingBy(Product::getCategory))
+                .keySet()
+                .stream()
+                .toList();
+
     }
 }

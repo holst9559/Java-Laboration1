@@ -2,6 +2,7 @@ package org.example;
 
 import static org.example.Laboration3.entities.Category.*;
 
+import org.example.Laboration3.entities.Category;
 import org.example.Laboration3.entities.ProductRecord;
 import org.example.Laboration3.entities.Product;
 
@@ -164,10 +165,23 @@ public class WarehouseTest {
         warehouse.updateProduct(update);
 
         List<ProductRecord> updatedProducts = warehouse.getUpdatedProducts();
-        System.out.println(updatedProducts);
 
         assertEquals(1, updatedProducts.size());
         assertEquals(1, updatedProducts.get(0).rating());
+    }
 
+    @Test
+    void shouldReturnPopulatedCategories() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product2 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+
+        List<Category> categoryProducts = warehouse.getPopulatedCategories();
+        System.out.println(categoryProducts);
+
+        assertEquals(2, categoryProducts.size());
+        assertFalse(categoryProducts.contains(YEAST));
     }
 }
