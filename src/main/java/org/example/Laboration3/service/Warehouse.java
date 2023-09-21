@@ -7,9 +7,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 /*
-Lägga till en ny produkt. (Bör ha någon enkel validering så att produkter utan namn ej kan läggas till)
-•Modifiera en befintlig produkt. (Byta namn, kategori, rating)
-•Hämta alla produkter.•Hämta en produkt genom produktens id.
+•Hämta alla produkter.
+•Hämta en produkt genom produktens id.
 •Hämta alla produkter som hör till en kategori sorterat efter produktnamn a-z.
 •Hämta alla produkter skapade efter ett angivet datum. (Nya produkter sen sist)
 •Hämta alla produkter som modifierats sen de skapades. (Datum ej samma)
@@ -37,7 +36,7 @@ public class Warehouse {
         return newProduct.toRecord();
     }
 
-    public ProductRecord updateProduct(ProductRecord productUpdate){
+    public ProductRecord updateProduct(ProductRecord productUpdate) {
         return products.stream().filter(product -> product.getId().equals(productUpdate.id())).findFirst()
                 .map(product -> {
                     product.setName(productUpdate.name());
@@ -46,6 +45,12 @@ public class Warehouse {
                     product.setUpdatedAt(LocalDate.now());
                     return product.toRecord();
                 }).orElseThrow(() -> new IllegalArgumentException("Product ID does not exist"));
+    }
+
+    public List<ProductRecord> getAllProducts() {
+        return products.stream()
+                .map(Product::toRecord)
+                .toList();
     }
 
 }

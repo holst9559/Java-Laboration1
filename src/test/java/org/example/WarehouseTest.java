@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.*;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +19,7 @@ public class WarehouseTest {
     private LocalDate now;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         warehouse = new Warehouse();
         Clock fixedClock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
         now = LocalDate.now(fixedClock);
@@ -75,6 +76,21 @@ public class WarehouseTest {
 
         assertThrows(IllegalArgumentException.class, () -> warehouse.updateProduct(update1));
         assertThrows(IllegalArgumentException.class, () -> warehouse.updateProduct(update2));
+    }
+
+    @Test
+    void shouldReturnAllProducts() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product2 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+
+        List<ProductRecord> allProducts = warehouse.getAllProducts();
+
+        assertEquals(2, allProducts.size());
+        assertEquals("Pilsnermalt", allProducts.get(0).name());
+        assertEquals("Simcoe", allProducts.get(1).name());
     }
 
 }
