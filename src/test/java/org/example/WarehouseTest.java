@@ -133,4 +133,22 @@ public class WarehouseTest {
         assertEquals("Chokladmalt", categoryList.get(0).name());
 
     }
+
+    @Test
+    void shouldReturnProductsAfterSpecificDate() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4,
+                LocalDate.now().minusDays(5),
+                LocalDate.now().minusDays(5));
+        Product product2 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+
+        List<ProductRecord> newProducts = warehouse.getProductsAfterDate(LocalDate.now()
+                .minusDays(2));
+
+        assertEquals(1, newProducts.size());
+        assertEquals("Simcoe", newProducts.get(0).name());
+
+    }
 }

@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 /*
-•Hämta alla produkter som hör till en kategori sorterat efter produktnamn a-z.
 •Hämta alla produkter skapade efter ett angivet datum. (Nya produkter sen sist)
 •Hämta alla produkter som modifierats sen de skapades. (Datum ej samma)
 
@@ -66,4 +65,9 @@ public class Warehouse {
                 .toList();
     }
 
+    public List<ProductRecord> getProductsAfterDate(LocalDate localDate) {
+        return products.stream().filter(product -> product.getCreatedAt().isAfter(localDate))
+                .map(Product::toRecord)
+                .toList();
+    }
 }
