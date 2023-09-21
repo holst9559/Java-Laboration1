@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 
 /*Utöka Warehouse med ytterligare funktioner för:
-•Hämta alla kategorier som har minst 1 produkt kopplad.
 •Hämta hur många produkter det finns i en given kategori.
 •Hämta en Map som innehåller alla bokstäver som produktnamn börjar på
 som nyckel och antalet produkter som börjar på den bokstaven som value.
@@ -88,4 +87,12 @@ public class Warehouse {
                 .toList();
 
     }
+
+    public int getNumberOfProductsInCategory(Category category) {
+        return products.stream().map(Product::getCategory)
+                .filter(productCategory -> productCategory.equals(category))
+                .toList()
+                .size();
+    }
+
 }

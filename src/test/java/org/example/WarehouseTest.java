@@ -179,9 +179,26 @@ public class WarehouseTest {
         warehouse.addNewProduct(product2.toRecord());
 
         List<Category> categoryProducts = warehouse.getPopulatedCategories();
-        System.out.println(categoryProducts);
 
         assertEquals(2, categoryProducts.size());
         assertFalse(categoryProducts.contains(YEAST));
+    }
+
+    @Test
+    void shouldReturnSizeOfPopulatedCategory() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product2 = new Product("Chokladmalt", MALT, 2);
+        Product product3 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+        warehouse.addNewProduct(product3.toRecord());
+
+        int size = warehouse.getNumberOfProductsInCategory(MALT);
+
+
+        assertEquals(2, size);
+
+
     }
 }
