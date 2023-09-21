@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -114,5 +115,22 @@ public class WarehouseTest {
 
         assertThrows(IllegalArgumentException.class, () -> warehouse.getProductById("123"));
         assertThrows(IllegalArgumentException.class, () -> warehouse.getProductById(""));
+    }
+
+    @Test
+    void shouldReturnMatchingCategory() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4);
+        Product product2 = new Product("Chokladmalt", MALT, 2);
+        Product product3 = new Product("Simcoe", HOPS, 5);
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+        warehouse.addNewProduct(product3.toRecord());
+
+        List<ProductRecord> categoryList = warehouse.getProductsByCategory(MALT);
+
+        assertEquals(2, categoryList.size());
+        assertEquals("Chokladmalt", categoryList.get(0).name());
+
     }
 }

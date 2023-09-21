@@ -1,5 +1,6 @@
 package org.example.Laboration3.service;
 
+import org.example.Laboration3.entities.Category;
 import org.example.Laboration3.entities.Product;
 import org.example.Laboration3.entities.ProductRecord;
 
@@ -7,7 +8,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 /*
-•Hämta en produkt genom produktens id.
 •Hämta alla produkter som hör till en kategori sorterat efter produktnamn a-z.
 •Hämta alla produkter skapade efter ett angivet datum. (Nya produkter sen sist)
 •Hämta alla produkter som modifierats sen de skapades. (Datum ej samma)
@@ -57,6 +57,13 @@ public class Warehouse {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Product ID does not exist"))
                 .toRecord();
+    }
+
+    public List<ProductRecord> getProductsByCategory(Category category) {
+        return products.stream().filter(product -> product.getCategory().equals(category))
+                .sorted(Comparator.comparing(Product::getName))
+                .map(Product::toRecord)
+                .toList();
     }
 
 }
