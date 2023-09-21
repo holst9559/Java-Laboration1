@@ -151,4 +151,23 @@ public class WarehouseTest {
         assertEquals("Simcoe", newProducts.get(0).name());
 
     }
+
+    @Test
+    void shouldReturnUpdatedProducts() {
+        Product product1 = new Product("Pilsnermalt", MALT, 4, LocalDate.now().minusDays(2), LocalDate.now().minusDays(2));
+        Product product2 = new Product("Chokladmalt", MALT, 2, LocalDate.now().minusDays(2), LocalDate.now().minusDays(2));
+
+        warehouse.addNewProduct(product1.toRecord());
+        warehouse.addNewProduct(product2.toRecord());
+
+        ProductRecord update = new ProductRecord(product1.getId(), "Pilsnermalt", MALT, 1, LocalDate.now(), LocalDate.now());
+        warehouse.updateProduct(update);
+
+        List<ProductRecord> updatedProducts = warehouse.getUpdatedProducts();
+        System.out.println(updatedProducts);
+
+        assertEquals(1, updatedProducts.size());
+        assertEquals(1, updatedProducts.get(0).rating());
+
+    }
 }
