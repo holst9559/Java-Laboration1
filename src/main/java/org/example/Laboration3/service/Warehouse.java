@@ -46,7 +46,6 @@ public class Warehouse {
                     product.setUpdatedAt(LocalDate.now());
                     return product.toRecord();
                 }).orElseThrow(() -> new IllegalArgumentException("Product ID does not exist"));
-
     }
 
 }
